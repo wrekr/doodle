@@ -1,0 +1,1861 @@
+<html>
+<head>
+<title>Doodle</title>
+<style type="text/css">
+#pageTitleTextDisplay {
+  vertical-align:top;
+  font-family:arial;
+  font-size:x-large;
+  font-weight:bold;
+}
+#transformActionMenuDisplay {
+  width:420px;
+  text-align:right;
+}
+#footerText {
+  font-family:arial;
+  font-size:xx-small;
+  font-weight:bold;
+}
+#mouseCoords {
+  font-family:arial;
+  font-size:small;
+}
+.helpText {
+  font-family:arial;
+  font-size:small;
+}
+.actionParamLabelText {
+  font-family:arial;
+  font-size:small;
+}
+.actionParamLabelTextSmall {
+  font-family:arial;
+  font-size:x-small;
+}
+#freeDrawBrushTable {
+  margin:0px 0px 0px 8px;
+  border:0px;
+  padding:0px;
+}
+.freeDrawBrushWrapper {
+  width:20px;
+}
+.canvasFreeDrawBrushSelected {
+  border:1px solid black;
+}
+#opacityText {
+  font-family:arial;
+  font-size:x-small;
+  vertical-align:baseline;
+}
+.actionSelected {
+  font-weight:bold;
+}
+.canvasInstance {
+  position:absolute;
+}
+#canvasTable {
+  border:0px;
+}
+#canvasWrapper {
+  cursor:crosshair;
+  border:3px solid grey;
+}
+.canvasMenuWrapper {
+  width:81px;
+  height:68.5px;
+  border:1px solid grey;
+  margin-bottom:2px;
+}
+.canvasMenuItemActionWrapper {
+  vertical-align:bottom;
+}
+.canvasMenuItemSelected {
+  border:3px solid black;
+}
+#canvasFrame {
+  position:absolute;
+  z-index:10000; /* arbitrary high number */
+}
+#actionMenuDisplay {
+  vertical-align:top;
+  width:150px;
+}
+#canvasDisplay {
+  vertical-align:top;
+}
+#canvasMenuDisplay {
+  vertical-align:top;
+}
+button {
+  background-color:#FFFF66;
+  border-color:#FFEB99;
+  margin:5px 0px 0px 0px;
+}
+.actionWrapper {
+  background-color:#FFFFCC;
+  border:1px solid #E6D48A;
+  padding:4px;
+}
+#opacityActionWrapper {
+  margin-right:5px;
+}
+.colorPickerWrapper {
+  margin-left:5px;
+  padding:4px;
+}
+.colorPickerBox {
+  width:15px;
+  height:15px;
+  border:1px solid black;
+}
+.textFontInputPulldown {
+  font-size:x-small;
+  width:100px;
+}
+.textTextInputBox {
+  width:100px;
+}
+.textSizeInputBox {
+  font-size:x-small;
+  width:50px;
+}
+.lineWidthInputBox {
+  font-size:x-small;
+  width:50px;
+}
+#lineCapTable {
+  border-collapse:collapse;
+  margin-top:2px;
+}
+#lineCapLabel {
+  margin:0px;
+  border:0px;
+  padding:0px;
+  vertical-align:top;
+}
+.lineCapRadioButton {
+  margin:0px 0px 3px 10px;
+  vertical-align:text-bottom;
+}
+.colorInputBox {
+  width:65px;
+  margin-left:10px;
+  margin-bottom:5px;
+}
+#rectTypeTable {
+  border-collapse:collapse;
+  margin-bottom:5px;
+}
+#rectTypeLabel {
+  margin:0px;
+  border:0px;
+  padding:0px;
+  vertical-align:top;
+}
+.rectTypeRadioButton {
+  margin:0px 0px 0px 5px;
+  vertical-align:text-bottom;
+}
+#rectFillTypeTable {
+  border-collapse:collapse;
+  margin-bottom:5px;
+}
+#rectFillTypeLabel {
+  margin:0px;
+  border:0px;
+  padding:0px;
+  vertical-align:top;
+}
+.rectFillTypeRadioButton {
+  margin:0px 0px 0px 5px;
+  vertical-align:text-bottom;
+}
+#rectGradientSetPointsWrapper {
+  margin-bottom:5px;
+}
+#circleTypeTable {
+  margin:0px;
+  border:0px;
+  padding:0px;
+}
+#circleTypeLabel {
+  vertical-align:top;
+}
+.circleTypeRadioButton {
+  margin:0px;
+  vertical-align:text-bottom;
+}
+#circleFillTypeTable {
+  border-collapse:collapse;
+  margin-bottom:5px;
+}
+#circleFillTypeLabel {
+  margin:0px;
+  border:0px;
+  padding:0px;
+  vertical-align:top;
+}
+.circleFillTypeRadioButton {
+  margin:0px 0px 0px 5px;
+  vertical-align:text-bottom;
+}
+#circleGradientSetPointsWrapper {
+  margin-bottom:5px;
+}
+.shadowSubsection {
+  margin-left:10px;
+}
+.shadowInputBox {
+  font-size:x-small;
+  width:50px;
+}
+.imageURLInputBox {
+  width:100px;
+}
+.opacityInputBox {
+  width:50px;
+  vertical-align:bottom;
+}
+.rotationAngleInputBox {
+  font-size:x-small;
+  width:50px;
+}
+#mouseCoordsDisplay {
+  width:60px;
+  vertical-align:top;
+}
+#showGridlinesCheckboxDisplay {
+  vertical-align:top;
+}
+#canvasImageForSavingDisplay {
+  vertical-align:top;
+  text-align:right;
+}
+#canvasImageForSavingButton {
+  margin-top:0px;
+}
+.showGridlinesText {
+  font-family:arial;
+  font-size:small;
+}
+#canvasImageForSavingInstructionText {
+  font-family:arial;
+  font-size:medium;
+  font-weight:bold;
+  color:#009900;
+}
+#hintDisplay {
+  width:180px;
+  vertical-align:top;
+  font-family:arial;
+  font-size:small;
+  font-weight:bold;
+  color:#009900;
+}
+.hintText {
+  display:none;
+}
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript">
+function getCurrentYear(){
+  var dateObj;
+  dateObj = new Date();
+  return dateObj.getFullYear();
+}
+function loadColors(){
+  var colors = new Array();
+  colors[0] = 'FFFFFF';
+  colors[1] = 'C0C0C0';
+  colors[2] = '808080';
+  colors[3] = '000000';
+  colors[4] = 'FF0000';
+  colors[5] = '800000';
+  colors[6] = 'FFFF00';
+  colors[7] = '00FF00';
+  colors[8] = '008000';
+  colors[9] = '00FFFF';
+  colors[10] = '008080';
+  colors[11] = '0000FF';
+  colors[12] = '000080';
+  colors[13] = 'FF00FF';
+  colors[14] = '800080';
+  return colors;
+}
+function displayColorPickers() {
+  var types = new Array();
+  types[0] = 'freeDraw';
+  types[1] = 'text';
+  types[2] = 'line';
+  types[3] = 'rectLine';
+  types[4] = 'rectFill';
+  types[5] = 'rectGradientStart';
+  types[6] = 'rectGradientStop';
+  types[7] = 'circleLine';
+  types[8] = 'circleFill';
+  types[9] = 'circleGradientStart';
+  types[10] = 'circleGradientStop';
+  var colors = new Array();
+  colors = loadColors();
+  for ( var i in types ){
+    var wrapperID = types[i] + "ColorPickerWrapper";
+    $("#" + wrapperID).append("<table>");
+    for (j=0;j<Math.ceil(colors.length/5);j++) {
+      $("#" + wrapperID).append("<tr>");
+      for (k=0;k<5;k++) {
+        $("#" + wrapperID).append("<td id=\"" + types[i] + "Color_" + colors[(j*5)+k] + "\" class=\"colorPickerBox\" style=\"background-color:#" + colors[(j*5)+k] + ";\"></td>");
+      }
+      $("#" + wrapperID).append("</tr>");
+    }
+    $("#" + wrapperID).append("</table>");
+  }
+}
+function loadFonts(){
+  var fonts = new Array();
+  fonts[0] = 'Arial';
+  fonts[1] = 'Comic Sans MS';
+  fonts[2] = 'Courier New';
+  fonts[3] = 'Georgia';
+  fonts[4] = 'Helvetica';
+  fonts[5] = 'Impact';
+  fonts[6] = 'Lucida Console';
+  fonts[7] = 'Lucida Sans Unicode';
+  fonts[8] = 'Palatino Linotype';
+  fonts[9] = 'Tahoma';
+  fonts[10] = 'Times New Roman';
+  fonts[11] = 'Trebuchet MS';
+  fonts[12] = 'Verdana';
+  return fonts;
+}
+function displayFontPicker() {
+  var fonts = new Array();
+  fonts = loadFonts();
+  for ( var i in fonts ) {
+    $("#textFont").append("<option value=\"" + fonts[i] + "\">" + fonts[i] + "</option>");
+  }
+}
+function displayBrushPicker(){
+  var pickerBoxSize = 20;
+  var brushSizes = new Array();
+  brushSizes[0] = 20;
+  brushSizes[1] = 12;
+  brushSizes[2] = 8;
+  brushSizes[3] = 4;
+  brushSizes[4] = 2;
+  for ( var i in brushSizes ) {
+    var eachCanvas = new Object();
+    $("#freeDrawBrushSquareWrapper_" + i ).append("<canvas id=\"canvasFreeDrawBrush_square_" + brushSizes[i] + "\" class=\"freeDrawBrushPickerBox\" width=\"" + pickerBoxSize + "\" height=\"" + pickerBoxSize + "\"></canvas>");
+    eachCanvas.canvas = document.getElementById("canvasFreeDrawBrush_square_" + brushSizes[i]);
+    eachCanvas.context = eachCanvas.canvas.getContext("2d");
+    eachCanvas.context.beginPath();
+    eachCanvas.context.rect(Math.ceil((pickerBoxSize-brushSizes[i])/2),Math.ceil((pickerBoxSize-brushSizes[i])/2),brushSizes[i],brushSizes[i]);
+    eachCanvas.context.fillStyle = "#000000";
+    eachCanvas.context.fill();
+  }
+  for ( var i in brushSizes ) {
+    var eachCanvas = new Object();
+    $("#freeDrawBrushCircleWrapper_" + i ).append("<canvas id=\"canvasFreeDrawBrush_circle_" + brushSizes[i] + "\" class=\"freeDrawBrushPickerBox\" width=\"" + pickerBoxSize + "\" height=\"" + pickerBoxSize + "\"></canvas>");
+    eachCanvas.canvas = document.getElementById("canvasFreeDrawBrush_circle_" + brushSizes[i]);
+    eachCanvas.context = eachCanvas.canvas.getContext("2d");
+    eachCanvas.context.beginPath();
+    eachCanvas.context.arc(pickerBoxSize/2,pickerBoxSize/2,brushSizes[i]/2,0,2*Math.PI,false);
+    eachCanvas.context.fillStyle = "#000000";
+    eachCanvas.context.fill();
+  }
+}
+function displayGridlinesCanvas(canvasFrame){
+  var canvas;
+  var context;
+  var gridlineInterval;
+  var majorGridlineInterval;
+  $("#canvasFrame").after("<canvas id=\"canvasGridlines\" width=\"" + canvasFrame.canvas.width + "\" height=\"" + canvasFrame.canvas.height + "\"></canvas>");
+  $("#canvasGridlines").css("position","absolute");
+  $("#canvasGridlines").css("left",canvasFrame.context.offsetLeft);
+  $("#canvasGridlines").css("top",canvasFrame.context.offsetTop);
+  // Set z-index to 1 below z-index for canvasFrame, so that canvasFrame 
+  // is on very top and gridlines are just below canvasFrame but above all 
+  // the canvases that make up the drawing 
+  $("#canvasGridlines").css("z-index",$("#canvasFrame").css("z-index")-1);
+  $("#canvasGridlines").css("display","none");
+  canvas = document.getElementById("canvasGridlines");
+  context = canvas.getContext("2d");
+  context.lineWidth = 1;
+  context.strokeStyle = "#dddddd";
+  gridlineInterval = 20;
+  majorGridlineInterval = 100;
+  for (i=gridlineInterval;i<canvasFrame.canvas.width;i+=gridlineInterval) {
+    context.beginPath();
+    context.moveTo(i,0);
+    context.lineTo(i,canvasFrame.canvas.height);
+    if ( !( i % majorGridlineInterval ) ) {
+      context.strokeStyle = "#aaaaaa";
+    }
+    context.stroke();
+    if ( !( i % majorGridlineInterval ) ) {
+      context.strokeStyle = "#dddddd";
+    }
+  }
+  for (i=gridlineInterval;i<canvasFrame.canvas.height;i+=gridlineInterval) {
+    context.beginPath();
+    context.moveTo(0,i);
+    context.lineTo(canvasFrame.canvas.width,i);
+    if ( !( i % majorGridlineInterval ) ) {
+      context.strokeStyle = "#aaaaaa";
+    }
+    context.stroke();
+    if ( !( i % majorGridlineInterval ) ) {
+      context.strokeStyle = "#dddddd";
+    }
+  }
+}
+function setUpCanvasImageForSaving(canvasFrame){
+  $("#canvasImageForSaving").css("position","absolute");
+  $("#canvasImageForSaving").css("left",canvasFrame.context.offsetLeft);
+  $("#canvasImageForSaving").css("top",canvasFrame.context.offsetTop);
+  $("#canvasImageForSaving").attr("width",canvasFrame.canvas.width);
+  $("#canvasImageForSaving").attr("height",canvasFrame.canvas.height);
+  $("#canvasImageForSaving").css("z-index",-1); // Start on very bottom, will move to top when ready to save
+}
+function CanvasFrame(width,height){
+  var canvasOffset;
+  $("#canvasFrame").attr("width",width);
+  $("#canvasFrame").attr("height",height);
+  $("#canvasWrapper").css("width",width);
+  $("#canvasWrapper").css("height",height);
+  canvasOffset = $("#canvasFrame").offset();
+  this.canvas = document.getElementById("canvasFrame");
+  this.context = this.canvas.getContext("2d");
+  this.context.offsetLeft = canvasOffset.left;
+  this.context.offsetTop = canvasOffset.top;
+}
+function Canvas(type,canvasIndex) {
+  var self = this;
+  var canvasOffset;
+  this.canvasID = Math.floor(Math.random()*1000000000000);
+  this.canvasElementID = "canvas_" + String(this.canvasID);
+  this.type = type;
+  this.width = $("#canvasFrame").attr("width");
+  this.height = $("#canvasFrame").attr("height");
+  this.canvasMenuItemSizeReductionFactor = 8;
+  this.transformStates = new Array();
+  this.flipHoriz = false;
+  this.flipVert = false;
+  this.rotate = false;
+  this.rotationAngle = 0;
+  this.canvasAction = '';
+  this.initialShapeDrawn = false;
+  canvasOffset = $("#canvasFrame").offset();
+  $("#canvasWrapper").append("<canvas id=\"" + this.canvasElementID + "\" width=\"" + this.width + "\" height=\"" + this.height + "\"></canvas>");
+  $("#" + this.canvasElementID).addClass("canvasInstance");
+  $("#" + this.canvasElementID).css("left",canvasOffset.left);
+  $("#" + this.canvasElementID).css("top",canvasOffset.top);
+  $("#" + this.canvasElementID).css("z-index",canvasIndex);
+  this.canvas = document.getElementById(this.canvasElementID);
+  this.context = this.canvas.getContext("2d");
+  this.context.offsetLeft = canvasOffset.left;
+  this.context.offsetTop = canvasOffset.top;
+}
+Canvas.prototype.render = function() {
+  this.lastRenderChangedPixelsOnCanvas = false;
+  this.context.save();
+  this.updateDrawingParamsInObject();
+  if ( this.type != 'freeDraw' ) {
+    this.context.clearRect(0,0,this.width,this.height);
+  }
+  this.context.globalAlpha = this.opacity/100;
+  if (this.flipHoriz) {
+    var transformState = new Object();
+    transformState.type = 'flipHoriz';
+    this.transformStates.push(transformState);
+    this.flipHoriz = false;
+  }
+  if (this.flipVert) {
+    var transformState = new Object();
+    transformState.type = 'flipVert';
+    this.transformStates.push(transformState);
+    this.flipVert = false;
+  }
+  if (this.rotate) {
+    var transformState = new Object();
+    transformState.type = 'rotate';
+    transformState.rotationAngle = this.rotationAngle;
+    this.transformStates.push(transformState);
+    this.rotate = false;
+  }
+  if ( this.canvasAction == 'moveShape' ) {
+    var transformState = new Object();
+    transformState.type = 'move';
+    transformState.locationX = (this.mouseCurrentX-this.mouseStartX);
+    transformState.locationY = (this.mouseCurrentY-this.mouseStartY);
+    this.transformStates.push(transformState);
+  }
+  this.context.setTransform(1,0,0,1,0,0);
+  for (var i=this.transformStates.length-1;i>=0;i--) {
+    var eachTransformState = this.transformStates[i];
+    if ( eachTransformState.type == 'flipHoriz' ) {
+      this.context.translate(this.width,0);
+      this.context.scale(-1,1);
+    } else if ( eachTransformState.type == 'flipVert' ) {
+      this.context.translate(0,this.height);
+      this.context.scale(1,-1);
+    } else if ( eachTransformState.type == 'rotate' ) {
+      this.context.translate(this.width/2,this.height/2);
+      this.context.rotate((eachTransformState.rotationAngle*Math.PI)/180);
+      this.context.translate(-this.width/2,-this.height/2);
+    } else if ( eachTransformState.type == 'move' ) {
+      this.context.translate(eachTransformState.locationX,eachTransformState.locationY);
+    }
+  }
+  if ( this.type == 'freeDraw' ) {
+    if ( this.freeDrawBrushType == 'square' ) {
+      this.context.beginPath();
+      this.context.rect(this.mouseCurrentX-(this.freeDrawBrushSize/2),this.mouseCurrentY-(this.freeDrawBrushSize/2),this.freeDrawBrushSize,this.freeDrawBrushSize);
+      this.context.fillStyle = this.freeDrawColor;
+      this.context.fill();
+    } else if ( this.freeDrawBrushType == 'circle' ) {
+      this.context.beginPath();
+      this.context.arc(this.mouseCurrentX,this.mouseCurrentY,this.freeDrawBrushSize/2,0,2*Math.PI,false);
+      this.context.fillStyle = this.freeDrawColor;
+      this.context.fill();
+    }
+  } else if ( this.type == 'text' ) {
+    if (!this.initialShapeDrawn) {
+      this.textX = this.mouseCurrentX;
+      this.textY = this.mouseCurrentY;
+    }
+    if (this.textText) {
+      this.context.font = this.textSize + "pt " + this.textFont;
+      this.context.fillStyle = this.textColor;
+      this.context.fillText(this.textText,this.textX,this.textY);
+      this.lastRenderChangedPixelsOnCanvas = true;
+    }
+  } else if ( this.type == 'line' ) {
+    var width;
+    var height;
+    if (!this.initialShapeDrawn) {
+      this.lineStartX = this.mouseStartX;
+      this.lineStartY = this.mouseStartY;
+      this.lineStopX = this.mouseCurrentX;
+      this.lineStopY = this.mouseCurrentY;
+    }
+    width = Math.abs(this.lineStopX-this.lineStartX);
+    height = Math.abs(this.lineStopY-this.lineStartY);
+    if ( width > 1 && height > 1 ) {
+      this.context.beginPath();
+      this.context.moveTo(this.lineStartX,this.lineStartY);
+      this.context.lineTo(this.lineStopX,this.lineStopY);
+      this.context.lineWidth = this.lineLineWidth;
+      this.context.lineCap = this.lineCap;
+      this.context.shadowColor = "#cccccc";
+      this.context.shadowBlur = this.lineShadowBlur;
+      this.context.shadowOffsetX = this.lineShadowOffsetX;
+      this.context.shadowOffsetY = this.lineShadowOffsetY;
+      this.context.strokeStyle = this.lineColor;
+      this.context.stroke();
+      this.lastRenderChangedPixelsOnCanvas = true;
+    }
+  } else if ( this.type == 'rect' ) {
+    var startX;
+    var startY;
+    var width;
+    var height;
+    var gradient;
+    if (!this.initialShapeDrawn) {
+      this.rectStartX = this.mouseStartX;
+      this.rectStartY = this.mouseStartY;
+      this.rectStopX = this.mouseCurrentX;
+      this.rectStopY = this.mouseCurrentY;
+    }
+    if (this.gradientSetPoints) {
+      this.rectGradientStartX = this.mouseStartX;
+      this.rectGradientStartY = this.mouseStartY;
+      this.rectGradientStopX = this.mouseCurrentX;
+      this.rectGradientStopY = this.mouseCurrentY;
+      this.gradientSetPoints = false;
+    }
+    if ( this.rectStartX <= this.rectStopX ) {
+      startX = this.rectStartX;
+    } else {
+      startX = this.rectStopX;
+    }
+    if ( this.rectStartY <= this.rectStopY ) {
+      startY = this.rectStartY;
+    } else {
+      startY = this.rectStopY;
+    }
+    width = Math.abs(this.rectStopX-this.rectStartX);
+    height = Math.abs(this.rectStopY-this.rectStartY);
+    if ( width > 1 && height > 1 ) {
+      this.context.beginPath();
+      this.context.rect(startX,startY,width,height);
+      if ( this.rectType == 'solid' ||
+           this.rectType == 'solidWithBorder' ) {
+        if ( this.rectFillType == 'color' ) {
+          this.context.fillStyle = this.rectFillColor;
+        } else if ( this.rectFillType == 'gradient' ) {
+          if ( ( !this.rectGradientStartX &&
+                 this.rectGradientStartX != 0 ) ||
+               ( !this.rectGradientStopX &&
+                 this.rectGradientStopX != 0 ) ||
+               ( !this.rectGradientStartY &&
+                 this.rectGradientStartY != 0 ) ||
+               ( !this.rectGradientStopY &&
+                 this.rectGradientStopY != 0 ) ) {
+            gradient = this.context.createLinearGradient(startX,startY,startX+width,startY+height);
+          } else {
+            gradient = this.context.createLinearGradient(this.rectGradientStartX,this.rectGradientStartY,this.rectGradientStopX,this.rectGradientStopY);
+          }
+          gradient.addColorStop(0,this.rectGradientStartColor);
+          gradient.addColorStop(1,this.rectGradientStopColor);
+          this.context.fillStyle = gradient;
+        }
+      }
+      if ( this.rectType == 'hollow' ||
+           this.rectType == 'solidWithBorder' ) {
+        this.context.lineWidth = this.rectLineWidth;
+      }
+      this.context.shadowColor = "#cccccc";
+      this.context.shadowBlur = this.rectShadowBlur;
+      this.context.shadowOffsetX = this.rectShadowOffsetX;
+      this.context.shadowOffsetY = this.rectShadowOffsetY;
+      if ( this.rectType == 'solid' ||
+           this.rectType == 'solidWithBorder' ) {
+        this.context.fill();
+      }
+      if ( this.rectType == 'hollow' ||
+           this.rectType == 'solidWithBorder' ) {
+        this.context.strokeStyle = this.rectLineColor;
+        this.context.stroke();
+      }
+      this.lastRenderChangedPixelsOnCanvas = true;
+    }
+  } else if ( this.type == 'circle' ) {
+    var radius;
+    var width;
+    var height;
+    if (!this.initialShapeDrawn) {
+      this.circleStartX = this.mouseStartX;
+      this.circleStartY = this.mouseStartY;
+      this.circleStopX = this.mouseCurrentX;
+      this.circleStopY = this.mouseCurrentY;
+    }
+    if (this.gradientSetPoints) {
+      this.circleGradientStartX = this.mouseStartX;
+      this.circleGradientStartY = this.mouseStartY;
+      this.circleGradientStopX = this.mouseCurrentX;
+      this.circleGradientStopY = this.mouseCurrentY;
+      this.gradientSetPoints = false;
+    }
+    radius = Math.pow( Math.pow(Math.abs(this.circleStopX-this.circleStartX),2) + Math.pow(Math.abs(this.circleStopY-this.circleStartY),2) , .5 );
+    width = Math.abs(this.circleStopX-this.circleStartX);
+    height = Math.abs(this.circleStopY-this.circleStartY);
+    if ( width > 1 && height > 1 ) {
+      this.context.beginPath();
+      this.context.arc(this.circleStartX,this.circleStartY,radius,0,2*Math.PI,false);
+      if ( this.circleType == 'solid' ||
+           this.circleType == 'solidWithBorder' ) {
+        if ( this.circleFillType == 'color' ) {
+          this.context.fillStyle = this.circleFillColor;
+        } else if ( this.circleFillType == 'gradient' ) {
+          if ( ( !this.circleGradientStartX &&
+                 this.circleGradientStartX != 0 ) ||
+               ( !this.circleGradientStopX &&
+                 this.circleGradientStopX != 0 ) ||
+               ( !this.circleGradientStartY &&
+                 this.circleGradientStartY != 0 ) ||
+               ( !this.circleGradientStopY &&
+                 this.circleGradientStopY != 0 ) ) {
+            gradient = this.context.createLinearGradient(this.circleStartX,this.circleStartY,this.circleStartX+width,this.circleStartY+height);
+          } else {
+            gradient = this.context.createLinearGradient(this.circleGradientStartX,this.circleGradientStartY,this.circleGradientStopX,this.circleGradientStopY);
+          }
+          gradient.addColorStop(0,this.circleGradientStartColor);
+          gradient.addColorStop(1,this.circleGradientStopColor);
+          this.context.fillStyle = gradient;
+        }
+      }
+      if ( this.circleType == 'hollow' ||
+           this.circleType == 'solidWithBorder' ) {
+        this.context.lineWidth = this.circleLineWidth;
+      }
+      this.context.shadowColor = "#cccccc";
+      this.context.shadowBlur = this.circleShadowBlur;
+      this.context.shadowOffsetX = this.circleShadowOffsetX;
+      this.context.shadowOffsetY = this.circleShadowOffsetY;
+      if ( this.circleType == 'solid' ||
+           this.circleType == 'solidWithBorder' ) {
+        this.context.fill();
+      }
+      if ( this.circleType == 'hollow' ||
+           this.circleType == 'solidWithBorder' ) {
+        this.context.strokeStyle = this.circleLineColor;
+        this.context.stroke();
+      }
+      this.lastRenderChangedPixelsOnCanvas = true;
+    }
+  } else if ( this.type == 'image' ) {
+    if (!this.initialShapeDrawn) {
+      this.imageX = this.mouseCurrentX;
+      this.imageY = this.mouseCurrentY;
+    }
+    if (this.imageURL) {
+      var image = new Image();
+      image.src = this.imageURL;
+      this.context.drawImage(image,this.imageX,this.imageY);
+      this.lastRenderChangedPixelsOnCanvas = true;
+    }
+  }
+  // If something went wrong and we couldn't re-render the
+  // canvas (e.g. we were missing some params), return canvas
+  // to its original state before we cleared it at start of 
+  // this render routine
+  if ( this.type != 'freeDraw' &&
+       !this.lastRenderChangedPixelsOnCanvas ) {
+    this.context.restore();
+  }
+  if (!this.canvasMenuItemCanvas) {
+    this.displayCanvasMenuItem();
+    refreshCanvasMenu(this.canvasID);
+    this.canvasMenuItemCanvas = document.getElementById("canvasMenuItem_" + this.canvasID);
+    this.canvasMenuItemContext = this.canvasMenuItemCanvas.getContext("2d");
+  }
+  this.canvasMenuItemContext.clearRect(0,0,this.width/this.canvasMenuItemSizeReductionFactor,this.height/this.canvasMenuItemSizeReductionFactor);
+  this.canvasMenuItemContext.drawImage(this.canvas,0,0,this.width/this.canvasMenuItemSizeReductionFactor,this.height/this.canvasMenuItemSizeReductionFactor);
+}
+Canvas.prototype.displayCanvasMenuItem = function() {
+  $("#canvasMenu").prepend("<table><tr><td><div class=\"canvasMenuWrapper\"><canvas id=\"canvasMenuItem_" + this.canvasID + "\" class=\"canvasMenuItemBox\" width=\"" + this.width/this.canvasMenuItemSizeReductionFactor + "\" height=\"" + this.height/this.canvasMenuItemSizeReductionFactor + "\"></canvas></div></td><td class=\"canvasMenuItemActionWrapper\"><button id=\"canvasDelete_" + this.canvasID + "\" class=\"canvasDelete\">Delete</button> <button id=\"canvasMoveUp_" + this.canvasID + "\" class=\"canvasMoveUp\">Move up</button> <button id=\"canvasMoveDown_" + this.canvasID + "\" class=\"canvasMoveDown\">Move down</button></td></tr></table>");
+}
+Canvas.prototype.updateDrawingParamsInObject = function() {
+  var self = this;
+  var ID;
+  self.forceValidNumericDrawingParam('rotationAngle',-180,180);
+  self.forceValidNumericDrawingParam('textSize',8,50);
+  self.forceValidNumericDrawingParam('lineLineWidth',1,50);
+  self.forceValidNumericDrawingParam('rectLineWidth',1,50);
+  self.forceValidNumericDrawingParam('circleLineWidth',1,50);
+  self.forceValidNumericDrawingParam('lineShadowOffsetX',-30,30);
+  self.forceValidNumericDrawingParam('lineShadowOffsetY',-30,30);
+  self.forceValidNumericDrawingParam('rectShadowOffsetX',-30,30);
+  self.forceValidNumericDrawingParam('rectShadowOffsetY',-30,30);
+  self.forceValidNumericDrawingParam('circleShadowOffsetX',-30,30);
+  self.forceValidNumericDrawingParam('circleShadowOffsetY',-30,30);
+  self.forceValidNumericDrawingParam('lineShadowBlur',0,25);
+  self.forceValidNumericDrawingParam('rectShadowBlur',0,25);
+  self.forceValidNumericDrawingParam('circleShadowBlur',0,25);
+  $(".actionParam").each(function(){
+    ID = $(this).attr("id");
+    self[ID] = $("#" + ID).val();
+  });
+}
+Canvas.prototype.forceValidNumericDrawingParam = function(ID,minValue,maxValue) {
+  if ( $("#" + ID).val() > maxValue ) {
+    $("#" + ID).val(maxValue);
+  } else if ( $("#" + ID).val() < minValue ) {
+    $("#" + ID).val(minValue);
+  }
+}
+Canvas.prototype.updateDrawingParamsInInputFields = function() {
+  var self = this;
+  var ID;
+  $(".actionParam").each(function(){
+    ID = $(this).attr("id");
+    $("#" + ID).val(self[ID]);
+  });
+  refreshFreeDrawBrushMenu(self['freeDrawBrushType'],self['freeDrawBrushSize']);
+  if ( self['lineCap'] == 'butt' ) {
+    $("#lineCap_butt").attr("checked","checked");
+    $("#lineCap_round").removeAttr("checked");
+  } else if ( self['lineCap'] == 'round' ) {
+    $("#lineCap_butt").removeAttr("checked");
+    $("#lineCap_round").attr("checked","checked");
+  }
+  refreshRectTypeSubsections(self['rectType']);
+  if ( self['rectType'] == 'hollow' ) {
+    $("#rectType_hollow").attr("checked","checked");
+    $("#rectType_solid").removeAttr("checked");
+    $("#rectType_solidWithBorder").removeAttr("checked");
+  } else if ( self['rectType'] == 'solid' ) {
+    $("#rectType_hollow").removeAttr("checked");
+    $("#rectType_solid").attr("checked","checked");
+    $("#rectType_solidWithBorder").removeAttr("checked");
+  } else if ( self['rectType'] == 'solidWithBorder' ) {
+    $("#rectType_hollow").removeAttr("checked");
+    $("#rectType_solid").removeAttr("checked");
+    $("#rectType_solidWithBorder").attr("checked","checked");
+  }
+  refreshRectFillTypeSubsections(self['rectFillType']);
+  if (self['initialShapeDrawn']) {
+    $("#rectGradientSetPointsWrapper").css("display","block");
+  } else {
+    $("#rectGradientSetPointsWrapper").css("display","none");
+  }
+  if ( self['rectFillType'] == 'color' ) {
+    $("#rectFillType_color").attr("checked","checked");
+    $("#rectFillType_gradient").removeAttr("checked");
+  } else if ( self['rectFillType'] == 'gradient' ) {
+    $("#rectFillType_color").removeAttr("checked");
+    $("#rectFillType_gradient").attr("checked","checked");
+  }
+  refreshCircleTypeSubsections(self['circleType']);
+  if ( self['circleType'] == 'hollow' ) {
+    $("#circleType_hollow").attr("checked","checked");
+    $("#circleType_solid").removeAttr("checked");
+    $("#circleType_solidWithBorder").removeAttr("checked");
+  } else if ( self['circleType'] == 'solid' ) {
+    $("#circleType_hollow").removeAttr("checked");
+    $("#circleType_solid").attr("checked","checked");
+    $("#circleType_solidWithBorder").removeAttr("checked");
+  } else if ( self['circleType'] == 'solidWithBorder' ) {
+    $("#circleType_hollow").removeAttr("checked");
+    $("#circleType_solid").removeAttr("checked");
+    $("#circleType_solidWithBorder").attr("checked","checked");
+  }
+  refreshCircleFillTypeSubsections(self['circleFillType']);
+  if (self['initialShapeDrawn']) {
+    $("#circleGradientSetPointsWrapper").css("display","block");
+  } else {
+    $("#circleGradientSetPointsWrapper").css("display","none");
+  }
+  if ( self['circleFillType'] == 'color' ) {
+    $("#circleFillType_color").attr("checked","checked");
+    $("#circleFillType_gradient").removeAttr("checked");
+  } else if ( self['circleFillType'] == 'gradient' ) {
+    $("#circleFillType_color").removeAttr("checked");
+    $("#circleFillType_gradient").attr("checked","checked");
+  }
+  $("#opacityText").html(self['opacity'] + "%");
+}
+Canvas.prototype.updateMouseStartCoords = function(e) {
+  this.mouseStartX = e.pageX - this.context.offsetLeft;
+  this.mouseStartY = e.pageY - this.context.offsetTop;
+}
+Canvas.prototype.updateMouseCurrentCoords = function(e) {
+  this.mouseCurrentX = e.pageX - this.context.offsetLeft;
+  this.mouseCurrentY = e.pageY - this.context.offsetTop;
+}
+function setDrawingParamInputFieldsToDefaults(){
+  var defaults = new Object();
+  defaults['freeDrawBrushType'] = 'square';
+  defaults['freeDrawBrushSize'] = 8;
+  defaults['freeDrawColor'] = '#000000';
+  defaults['textText'] = '';
+  defaults['textFont'] = 'Times New Roman';
+  defaults['textSize'] = 12;
+  defaults['textColor'] = '#000000';
+  defaults['lineLineWidth'] = 1;
+  defaults['lineCap'] = 'butt';
+  defaults['lineColor'] = '#000000';
+  defaults['lineShadowOffsetX'] = 0;
+  defaults['lineShadowOffsetY'] = 0;
+  defaults['lineShadowBlur'] = 0;
+  defaults['rectType'] = 'hollow';
+  defaults['rectLineWidth'] = 1;
+  defaults['rectLineColor'] = '#000000';
+  defaults['rectFillType'] = 'color';
+  defaults['rectFillColor'] = '#C0C0C0';
+  defaults['rectGradientStartColor'] = '#C0C0C0';
+  defaults['rectGradientStopColor'] = '#808080';
+  defaults['rectShadowOffsetX'] = 0;
+  defaults['rectShadowOffsetY'] = 0;
+  defaults['rectShadowBlur'] = 0;
+  defaults['circleType'] = 'hollow';
+  defaults['circleLineWidth'] = 1;
+  defaults['circleLineColor'] = '#000000';
+  defaults['circleFillType'] = 'color';
+  defaults['circleFillColor'] = '#C0C0C0';
+  defaults['circleGradientStartColor'] = '#C0C0C0';
+  defaults['circleGradientStopColor'] = '#808080';
+  defaults['circleShadowOffsetX'] = 0;
+  defaults['circleShadowOffsetY'] = 0;
+  defaults['circleShadowBlur'] = 0;
+  defaults['imageURL'] = '';
+  defaults['opacity'] = 100;
+  defaults['rotationAngle'] = 0;
+  for ( var ID in defaults ) {
+    $("#" + ID).val(defaults[ID]);
+  }
+  refreshFreeDrawBrushMenu(defaults['freeDrawBrushType'],defaults['freeDrawBrushSize']);
+  if ( defaults['lineCap'] == 'butt' ) {
+    $("#lineCap_butt").attr("checked","checked");
+    $("#lineCap_round").removeAttr("checked");
+  } else if ( defaults['lineCap'] == 'round' ) {
+    $("#lineCap_butt").removeAttr("checked");
+    $("#lineCap_round").attr("checked","checked");
+  }
+  refreshRectTypeSubsections(defaults['rectType']);
+  if ( defaults['rectType'] == 'hollow' ) {
+    $("#rectType_hollow").attr("checked","checked");
+    $("#rectType_solid").removeAttr("checked");
+    $("#rectType_solidWithBorder").removeAttr("checked");
+  } else if ( defaults['rectType'] == 'solid' ) {
+    $("#rectType_hollow").removeAttr("checked");
+    $("#rectType_solid").attr("checked","checked");
+    $("#rectType_solidWithBorder").removeAttr("checked");
+  } else if ( defaults['rectType'] == 'solidWithBorder' ) {
+    $("#rectType_hollow").removeAttr("checked");
+    $("#rectType_solid").removeAttr("checked");
+    $("#rectType_solidWithBorder").attr("checked","checked");
+  }
+  refreshRectFillTypeSubsections(defaults['rectFillType']);
+  $("#rectGradientSetPointsWrapper").css("display","none");
+  if ( defaults['rectFillType'] == 'color' ) {
+    $("#rectFillType_color").attr("checked","checked");
+    $("#rectFillType_gradient").removeAttr("checked");
+  } else if ( defaults['rectFillType'] == 'gradient' ) {
+    $("#rectFillType_color").removeAttr("checked");
+    $("#rectFillType_gradient").attr("checked","checked");
+  }
+  refreshCircleTypeSubsections(defaults['circleType']);
+  if ( defaults['circleType'] == 'hollow' ) {
+    $("#circleType_hollow").attr("checked","checked");
+    $("#circleType_solid").removeAttr("checked");
+    $("#circleType_solidWithBorder").removeAttr("checked");
+  } else if ( defaults['circleType'] == 'solid' ) {
+    $("#circleType_hollow").removeAttr("checked");
+    $("#circleType_solid").attr("checked","checked");
+    $("#circleType_solidWithBorder").removeAttr("checked");
+  } else if ( defaults['circleType'] == 'solidWithBorder' ) {
+    $("#circleType_hollow").removeAttr("checked");
+    $("#circleType_solid").removeAttr("checked");
+    $("#circleType_solidWithBorder").attr("checked","checked");
+  }
+  refreshCircleFillTypeSubsections(defaults['circleFillType']);
+  $("#circleGradientSetPointsWrapper").css("display","none");
+  if ( defaults['circleFillType'] == 'color' ) {
+    $("#circleFillType_color").attr("checked","checked");
+    $("#circleFillType_gradient").removeAttr("checked");
+  } else if ( defaults['circleFillType'] == 'gradient' ) {
+    $("#circleFillType_color").removeAttr("checked");
+    $("#circleFillType_gradient").attr("checked","checked");
+  }
+  $("#opacityText").html(defaults['opacity'] + "%");
+}
+function updateCanvases(canvases){
+  $("#canvasMenuDisplay").empty();
+  $("#canvasMenuDisplay").append("<span class=\"helpText\">Click on shape to edit:</span><br />");
+  $("#canvasMenuDisplay").append("<div id=\"canvasMenu\"></div>");
+  for ( var i in canvases ) {
+    var eachCanvas = canvases[i];
+    eachCanvas.displayCanvasMenuItem();
+    eachCanvas.canvasMenuItemCanvas = document.getElementById("canvasMenuItem_" + eachCanvas.canvasID);
+    eachCanvas.canvasMenuItemContext = eachCanvas.canvasMenuItemCanvas.getContext("2d");
+    eachCanvas.canvasMenuItemContext.drawImage(eachCanvas.canvas,0,0,eachCanvas.width/eachCanvas.canvasMenuItemSizeReductionFactor,eachCanvas.height/eachCanvas.canvasMenuItemSizeReductionFactor);
+    $("#" + eachCanvas.canvasElementID).css("z-index",i);
+  }
+}
+function refreshCanvasMenu(currentCanvasID){
+  $(".canvasMenuItemBox").each(function(){
+    if ( currentCanvasID && 
+         $(this).attr("id") == ( "canvasMenuItem_" + currentCanvasID ) ) { 
+      $(this).addClass("canvasMenuItemSelected");
+    } else {
+      $(this).removeClass("canvasMenuItemSelected");
+    }
+  });
+}
+function refreshActionMenu(currentAction){
+  $(".actionButton").each(function(){
+    if ( $(this).attr("id") == currentAction ) { 
+      $(this).addClass("actionSelected");
+      $("#" + $(this).attr("id") + "Wrapper").slideDown("fast");
+    } else {
+      $(this).removeClass("actionSelected");
+      $("#" + $(this).attr("id") + "Wrapper").slideUp("fast");
+    }
+  });
+  if ( currentAction == 'freeDrawAction' ) {
+    $("#opacity").attr("disabled","disabled");
+    $("#flipHorizAction").attr("disabled","disabled");
+    $("#flipVertAction").attr("disabled","disabled");
+    $("#rotationAngle").attr("disabled","disabled");
+  } else {
+    $("#opacity").removeAttr("disabled");
+    $("#flipHorizAction").removeAttr("disabled");
+    $("#flipVertAction").removeAttr("disabled");
+    $("#rotationAngle").removeAttr("disabled");
+  }
+}
+function refreshFreeDrawBrushMenu(currentBrushType,currentBrushSize){
+  $(".freeDrawBrushPickerBox").each(function(){
+    if ( currentBrushType &&
+         currentBrushSize &&
+         $(this).attr("id") == ( "canvasFreeDrawBrush_" + currentBrushType + "_" + currentBrushSize ) ) { 
+      $(this).addClass("canvasFreeDrawBrushSelected");
+    } else {
+      $(this).removeClass("canvasFreeDrawBrushSelected");
+    }
+  });
+}
+function refreshRectTypeSubsections(rectType){
+  if ( rectType == 'hollow' ) {
+    $("#rectLineWidthWrapper").css("display","inline");
+    $("#rectLineColorWrapper").css("display","inline");
+    $("#rectFillWrapper").css("display","none");
+  } else if ( rectType == 'solid' ) {
+    $("#rectLineWidthWrapper").css("display","none");
+    $("#rectLineColorWrapper").css("display","none");
+    $("#rectFillWrapper").css("display","inline");
+  } else if ( rectType == 'solidWithBorder' ) {
+    $("#rectLineWidthWrapper").css("display","inline");
+    $("#rectLineColorWrapper").css("display","inline");
+    $("#rectFillWrapper").css("display","inline");
+  }
+}
+function refreshRectFillTypeSubsections(rectFillType){
+  if ( rectFillType == 'color' ) {
+    $("#rectFillColorWrapper").css("display","inline");
+    $("#rectFillGradientWrapper").css("display","none");
+  } else if ( rectFillType == 'gradient' ) {
+    $("#rectFillColorWrapper").css("display","none");
+    $("#rectFillGradientWrapper").css("display","inline");
+  }
+}
+function refreshCircleTypeSubsections(circleType){
+  if ( circleType == 'hollow' ) {
+    $("#circleLineWidthWrapper").css("display","inline");
+    $("#circleLineColorWrapper").css("display","inline");
+    $("#circleFillWrapper").css("display","none");
+  } else if ( circleType == 'solid' ) {
+    $("#circleLineWidthWrapper").css("display","none");
+    $("#circleLineColorWrapper").css("display","none");
+    $("#circleFillWrapper").css("display","inline");
+  } else if ( circleType == 'solidWithBorder' ) {
+    $("#circleLineWidthWrapper").css("display","inline");
+    $("#circleLineColorWrapper").css("display","inline");
+    $("#circleFillWrapper").css("display","inline");
+  }
+}
+function refreshCircleFillTypeSubsections(circleFillType){
+  if ( circleFillType == 'color' ) {
+    $("#circleFillColorWrapper").css("display","inline");
+    $("#circleFillGradientWrapper").css("display","none");
+  } else if ( circleFillType == 'gradient' ) {
+    $("#circleFillColorWrapper").css("display","none");
+    $("#circleFillGradientWrapper").css("display","inline");
+  }
+}
+function refreshHintText(hintText){
+  $(".hintText").css("display","none");
+  if (hintText) {
+    $("#" + hintText).css("display","inline");
+  }
+}
+function getCanvasIndexForCanvasID(canvasID,canvasIDs){
+  for ( var i in canvasIDs ) {
+    if ( canvasIDs[i] == canvasID ) {
+      return Number(i);
+    }
+  }
+}
+function saveCanvasAsImagePrepare(state,canvasFrame,canvases){
+  state.readyForSaving = true;
+  // Disable everything except save controls
+  $("#canvasImageForSavingButton").css("display","none");
+  $("#canvasImageForSavingInstructionText").css("display","inline");
+  $("button").attr("disabled","disabled");
+  $("input").attr("disabled","disabled");
+  $("#canvasImageForSavingDoneButton").removeAttr("disabled");
+  $("#canvasImageForSavingCancelButton").removeAttr("disabled");
+  refreshHintText();
+  // Print all canvases to canvas frame in z-index order
+  for ( var i in canvases ) {
+    var eachCanvas = canvases[i];
+    canvasFrame.context.drawImage(eachCanvas.canvas,0,0,eachCanvas.width,eachCanvas.height);
+  }
+  // Save canvas frame as a data URL
+  var dataURL = canvasFrame.canvas.toDataURL();
+  // Set src of image to data URL for canvas frame
+  $("#canvasImageForSaving").attr("src",dataURL);
+  // Display image, and move image to very top so user can right click on it
+  $("#canvasImageForSaving").css("display","block");
+  $("#canvasImageForSaving").css("z-index",$("#canvasFrame").css("z-index")+1);
+}
+function saveCanvasAsImageDone(state,canvasFrame){
+  state.readyForSaving = false;
+  // Re-enable/re-display everything
+  $("#canvasImageForSavingButton").css("display","inline");
+  $("#canvasImageForSavingInstructionText").css("display","none");
+  $("button").removeAttr("disabled");
+  $("input").removeAttr("disabled");
+  refreshActionMenu( state.currentAction + "Action" );
+  if ( state.currentCanvas &&
+       state.currentCanvas.initialShapeDrawn ) {
+    $(".rectTypeRadioButton").attr("disabled","disabled");
+    $(".circleTypeRadioButton").attr("disabled","disabled");
+    refreshHintText('hintTextMoveShape');
+  } else if ( state.currentAction == 'text' ) {
+    refreshHintText('hintTextDrawText');
+  } else if ( state.currentAction == 'line' ) {
+    refreshHintText('hintTextDrawLine');
+  } else if ( state.currentAction == 'rect' ) {
+    refreshHintText('hintTextDrawRect');
+  } else if ( state.currentAction == 'circle' ) {
+    refreshHintText('hintTextDrawCircle');
+  } else if ( state.currentAction == 'image' ) {
+    refreshHintText('hintTextDrawImage');
+  }
+  // Hide image, and move image to very bottom
+  $("#canvasImageForSaving").css("display","none");
+  $("#canvasImageForSaving").css("z-index",-1);
+  // Clear canvas frame
+  canvasFrame.context.clearRect(0,0,canvasFrame.canvas.width,canvasFrame.canvas.height);
+}
+function handleActionButtonClick(action,state){
+  state.currentAction = action.substring(0,action.indexOf('Action'));
+  // If user clicking on action button and still in the middle
+  // of drawing initial shape or moving shape, assume we should
+  // leave the canvas as it currently is and consider initial 
+  // shape drawn
+  if ( state.currentCanvas &&
+       state.currentCanvas.canvasAction ) {
+    state.currentCanvas.canvasAction = '';
+    state.currentCanvas.initialShapeDrawn = true;
+  }
+  state.currentCanvas = undefined;
+  state.currentCanvasID = undefined;
+  refreshActionMenu(action);
+  $(".rectTypeRadioButton").removeAttr("disabled");
+  $(".circleTypeRadioButton").removeAttr("disabled");
+  if ( state.currentAction == 'text' ) {
+    refreshHintText('hintTextDrawText');
+  } else if ( state.currentAction == 'line' ) {
+    refreshHintText('hintTextDrawLine');
+  } else if ( state.currentAction == 'rect' ) {
+    refreshHintText('hintTextDrawRect');
+  } else if ( state.currentAction == 'circle' ) {
+    refreshHintText('hintTextDrawCircle');
+  } else if ( state.currentAction == 'image' ) {
+    refreshHintText('hintTextDrawImage');
+  } else {
+    refreshHintText();
+  }
+  setDrawingParamInputFieldsToDefaults();
+  refreshCanvasMenu();
+}
+function handleCanvasMenuItemSelect(buttonID,state,canvases,canvasIDs){
+  // If user trying to edit an existing shape and still in the middle
+  // of drawing initial shape or moving shape, assume we should
+  // leave the canvas as it currently is and consider initial 
+  // shape drawn
+  if ( state.currentCanvas &&
+       state.currentCanvas.canvasAction ) {
+    state.currentCanvas.canvasAction = '';
+    state.currentCanvas.initialShapeDrawn = true;
+  }
+  var idParts = buttonID.split('_');
+  var selectedCanvasID = idParts[1];
+  var selectedCanvasIndex = getCanvasIndexForCanvasID(selectedCanvasID,canvasIDs);
+  state.currentCanvas = canvases[selectedCanvasIndex];
+  state.currentCanvasID = selectedCanvasID;
+  state.currentCanvas.updateDrawingParamsInInputFields();
+  state.currentAction = state.currentCanvas.type;
+  refreshActionMenu(state.currentCanvas.type + "Action");
+  $(".rectTypeRadioButton").attr("disabled","disabled");
+  $(".circleTypeRadioButton").attr("disabled","disabled");
+  refreshHintText('hintTextMoveShape');
+  refreshCanvasMenu(selectedCanvasID);
+}
+function handleCanvasDeleteButtonClick(buttonID,state,canvases,canvasIDs){
+  // If user trying to delete an existing shape and still in the middle
+  // of drawing initial shape or moving shape, assume we should
+  // leave the canvas as it currently is and consider initial 
+  // shape drawn
+  if ( state.currentCanvas &&
+       state.currentCanvas.canvasAction ) {
+    state.currentCanvas.canvasAction = '';
+    state.currentCanvas.initialShapeDrawn = true;
+  }
+  var idParts = buttonID.split('_');
+  var selectedCanvasID = idParts[1];
+  var selectedCanvasIndex = getCanvasIndexForCanvasID(selectedCanvasID,canvasIDs);
+  $("#canvas_" + selectedCanvasID).remove();
+  canvases.splice(selectedCanvasIndex,1);
+  canvasIDs.splice(selectedCanvasIndex,1);
+  state.currentCanvas = undefined;
+  state.currentCanvasID = undefined;
+  updateCanvases(canvases);
+  state.currentAction = '';
+  refreshActionMenu();
+  refreshHintText();
+  refreshCanvasMenu();
+  // If we have deleted all canvases, we need to disable the 
+  // 'save drawing as image' button
+  if ( canvases.length == 0 ) {
+    $("#canvasImageForSavingButton").attr("disabled","disabled");
+  } else {
+    $("#canvasImageForSavingButton").removeAttr("disabled");
+    // If we still have at least one image canvas, we need to disable the
+    // 'save drawing as image' button (can't save a drawing which contains
+    // an image, throws security error)
+    for ( var i in canvases ) {
+      var eachCanvas = canvases[i];
+      if ( eachCanvas.type == 'image' ) {
+        $("#canvasImageForSavingButton").attr("disabled","disabled");
+        break;
+      }
+    }
+  }
+}
+function handleCanvasMoveUpButtonClick(buttonID,state,canvases,canvasIDs){
+  // If user trying to move up an existing shape and still in the middle
+  // of drawing initial shape or moving shape, assume we should
+  // leave the canvas as it currently is and consider initial 
+  // shape drawn
+  if ( state.currentCanvas &&
+       state.currentCanvas.canvasAction ) {
+    state.currentCanvas.canvasAction = '';
+    state.currentCanvas.initialShapeDrawn = true;
+  }
+  var idParts = buttonID.split('_');
+  var selectedCanvasID = idParts[1];
+  var selectedCanvasIndex = getCanvasIndexForCanvasID(selectedCanvasID,canvasIDs);
+  if ( canvases.length > (selectedCanvasIndex+1) ) {
+    $("#canvas_" + selectedCanvasID).css("z-index",selectedCanvasIndex+1);
+    $("#canvas_" + canvasIDs[selectedCanvasIndex+1]).css("z-index",selectedCanvasIndex);
+    state.currentCanvas = canvases[selectedCanvasIndex];
+    canvases[selectedCanvasIndex] = canvases[selectedCanvasIndex+1];
+    canvases[selectedCanvasIndex+1] = state.currentCanvas;
+    state.currentCanvasID = canvasIDs[selectedCanvasIndex];
+    canvasIDs[selectedCanvasIndex] = canvasIDs[selectedCanvasIndex+1];
+    canvasIDs[selectedCanvasIndex+1] = state.currentCanvasID;
+    updateCanvases(canvases);
+    refreshHintText('hintTextMoveShape');
+    refreshCanvasMenu(selectedCanvasID);
+  }
+}
+function handleCanvasMoveDownButtonClick(buttonID,state,canvases,canvasIDs){
+  // If user trying to move down an existing shape and still in the middle
+  // of drawing initial shape or moving shape, assume we should
+  // leave the canvas as it currently is and consider initial 
+  // shape drawn
+  if ( state.currentCanvas &&
+       state.currentCanvas.canvasAction ) {
+    state.currentCanvas.canvasAction = '';
+    state.currentCanvas.initialShapeDrawn = true;
+  }
+  var idParts = buttonID.split('_');
+  var selectedCanvasID = idParts[1];
+  var selectedCanvasIndex = getCanvasIndexForCanvasID(selectedCanvasID,canvasIDs);
+  if ( selectedCanvasIndex > 0 ) {
+    $("#canvas_" + selectedCanvasID).css("z-index",selectedCanvasIndex-1);
+    $("#canvas_" + canvasIDs[selectedCanvasIndex-1]).css("z-index",selectedCanvasIndex);
+    state.currentCanvas = canvases[selectedCanvasIndex];
+    canvases[selectedCanvasIndex] = canvases[selectedCanvasIndex-1];
+    canvases[selectedCanvasIndex-1] = state.currentCanvas;
+    state.currentCanvasID = canvasIDs[selectedCanvasIndex];
+    canvasIDs[selectedCanvasIndex] = canvasIDs[selectedCanvasIndex-1];
+    canvasIDs[selectedCanvasIndex-1] = state.currentCanvasID;
+    updateCanvases(canvases);
+    refreshHintText('hintTextMoveShape');
+    refreshCanvasMenu(selectedCanvasID);
+  }
+}
+$(document).ready(function(){
+  // Declare variables
+  var state = new Object();
+  var canvasFrame = new Object();
+  var canvases = new Array();
+  var canvasIDs = new Array();
+  var idParts = new Array();
+  // Set defaults
+  state.currentAction = '';
+  state.canvasFrameWidth = 600;
+  state.canvasFrameHeight = 500;
+  // Display html elements containing dynamic data
+  $("#currentYear").html(getCurrentYear());
+  displayColorPickers();
+  displayFontPicker();
+  displayBrushPicker();
+  // Set defaults in html input elements
+  setDrawingParamInputFieldsToDefaults();
+  // Set up frame canvas
+  canvasFrame = new CanvasFrame(state.canvasFrameWidth,state.canvasFrameHeight);
+  // Set up gridlines canvas
+  displayGridlinesCanvas(canvasFrame);
+  // Set up fake image used for saving canvas as image
+  setUpCanvasImageForSaving(canvasFrame);
+  // Event listeners
+  $("#canvasFrame").mousedown(function(e){
+    e.preventDefault();
+    $("#canvasFrame").css("cursor","crosshair");
+    if (state.currentAction) {
+      // If we don't have a canvas yet, create one and assume
+      // user is mousing down in order to start drawing the initial 
+      // shape, whether free drawing or not
+      if (!state.currentCanvas) {
+        state.currentCanvas = new Canvas(state.currentAction,canvases.length);
+        state.currentCanvasID = state.currentCanvas.canvasID;
+        canvases.push(state.currentCanvas);
+        canvasIDs.push(state.currentCanvas.canvasID);
+        state.currentCanvas.updateMouseStartCoords(e);
+        state.currentCanvas.canvasAction = 'drawShape';
+        $("#canvasImageForSavingButton").removeAttr("disabled");
+        // If we have at least one image canvas, we need to disable the
+        // 'save drawing as image' button (can't save a drawing which contains
+        // an image, throws security error)
+        for ( var i in canvases ) {
+          var eachCanvas = canvases[i];
+          if ( eachCanvas.type == 'image' ) {
+            $("#canvasImageForSavingButton").attr("disabled","disabled");
+            break;
+          }
+        }
+      // If we already have a canvas and user is free drawing, assume
+      // user wants to draw on canvas (note that with freeDraw there
+      // is no concept of starting/stopping to draw by dragging, nor
+      // any concept of moving a shape)
+      } else if ( state.currentAction == 'freeDraw' ) {
+        state.currentCanvas.canvasAction = 'drawShape';
+      // If we already have a canvas and user isn't free drawing and
+      // user just indicated they want to set gradient points by dragging
+      // the mouse, assume users wants to do so
+      } else if (state.readyForGradientSetPoints) {
+        state.currentCanvas.updateMouseStartCoords(e);
+        state.currentCanvas.canvasAction = 'gradientSetPoints';
+        refreshHintText('hintTextSetGradient');
+      // If we already have a canvas and user isn't free drawing and
+      // user isn't setting gradient points and user has already 
+      // drawn the initial shape, assume user wants to move shape 
+      // by dragging mouse
+      } else if (state.currentCanvas.initialShapeDrawn) {
+        // If user drags mouse from within canvas area to outside of it, mouses up,
+        // then returns to canvas area and mouses down, we don't want to reset
+        // starting mouse coords, i.e. assume user is still in the middle of 
+        // moving shape by dragging mouse
+        if ( state.currentCanvas.canvasAction != 'moveShape' ) {
+          state.currentCanvas.updateMouseStartCoords(e);
+        }
+        state.currentCanvas.canvasAction = 'moveShape';
+      // If we already have a canvas and user isn't free drawing and
+      // user isn't setting gradient points and user hasn't yet
+      // drawn (or finished drawing) the initial shape, assume user wants 
+      // to draw (or continue drawing) the initial shape
+      } else {
+        // If user drags mouse from within canvas area to outside of it, mouses up,
+        // then returns to canvas area and mouses down, we don't want to reset
+        // starting mouse coords, i.e. assume user is still in the middle of 
+        // drawing shape by dragging mouse
+        if ( state.currentCanvas.canvasAction != 'drawShape' ) {
+          state.currentCanvas.updateMouseStartCoords(e);
+        }
+        state.currentCanvas.canvasAction = 'drawShape';
+      }
+      state.currentCanvas.updateMouseCurrentCoords(e);
+      state.currentCanvas.render();
+    }
+  });
+  $("#canvasFrame").mouseup(function(e){
+    // If user is in the middle of drawing initial shape or
+    // moving shape, assume user wants to finish drawing shape
+    // or finish moving shape on canvas using current mouse coords
+    if ( state.currentAction &&
+         state.currentCanvas &&
+        ( state.currentCanvas.canvasAction == 'drawShape' ||
+          state.currentCanvas.canvasAction == 'moveShape' ) ) {
+      state.currentCanvas.updateMouseCurrentCoords(e);
+      state.currentCanvas.render();
+      // Now that we've done the final rendering for draw initial 
+      // shape or move shape, set canvasAction to nothing and, if
+      // we actually drew a shape on the canvas (vs. e.g. just
+      // mousing down and immediately mousing up again), record that 
+      // we've drawn initial shape
+      state.currentCanvas.canvasAction = '';
+      if (state.currentCanvas.lastRenderChangedPixelsOnCanvas) {
+        state.currentCanvas.initialShapeDrawn = true;
+        $("#rectGradientSetPointsWrapper").css("display","block");
+        $("#circleGradientSetPointsWrapper").css("display","block");
+        $(".rectTypeRadioButton").attr("disabled","disabled");
+        $(".circleTypeRadioButton").attr("disabled","disabled");
+        refreshHintText('hintTextMoveShape');
+      }
+    } else if ( state.currentAction &&
+                state.currentCanvas &&
+                state.currentCanvas.canvasAction == 'gradientSetPoints' ) {
+      state.currentCanvas.updateMouseCurrentCoords(e);
+      state.currentCanvas.gradientSetPoints = true;
+      state.currentCanvas.render();
+      state.currentCanvas.canvasAction = '';
+      refreshHintText('hintTextMoveShape');
+    }
+  });
+  $("#canvasFrame").mousemove(function(e){
+    e.preventDefault();
+    $("#canvasFrame").css("cursor","crosshair");
+    $("#mouseCoords").html(String(e.pageX - canvasFrame.context.offsetLeft) + "," + String(e.pageY - canvasFrame.context.offsetTop));
+    // If user is in the middle of drawing initial shape or
+    // moving shape, assume user wants to update shape rendering
+    // on canvas using current mouse coords
+    if ( state.currentAction &&
+         state.currentCanvas &&
+        ( state.currentCanvas.canvasAction == 'drawShape' ||
+          state.currentCanvas.canvasAction == 'moveShape' ) ) {
+      state.currentCanvas.updateMouseCurrentCoords(e);
+      state.currentCanvas.render();
+      // If user is in the middle of moving shape, record
+      // start coords here for use on the *next* mousemove
+      // event (or mouseup event), so that we can translate
+      // the canvas using the delta between start and current
+      // mouse coords
+      if ( state.currentCanvas.canvasAction == 'moveShape' ) {
+        state.currentCanvas.updateMouseStartCoords(e);
+      }
+    }
+  });
+  $("#freeDrawAction").click(function(){
+    handleActionButtonClick('freeDrawAction',state);
+  });
+  $("#textAction").click(function(){
+    handleActionButtonClick('textAction',state);
+  });
+  $("#lineAction").click(function(){
+    handleActionButtonClick('lineAction',state);
+  });
+  $("#rectAction").click(function(){
+    handleActionButtonClick('rectAction',state);
+  });
+  $("#circleAction").click(function(){
+    handleActionButtonClick('circleAction',state);
+  });
+  $("#imageAction").click(function(){
+    handleActionButtonClick('imageAction',state);
+  });
+  $(".actionParam").mouseup(function(){
+    if ( state.currentAction != 'freeDraw' ) {
+      if (state.currentCanvas) {
+        state.currentCanvas.render();
+      }
+    }
+  });
+  $(".actionParam").blur(function(){
+    if ( state.currentAction != 'freeDraw' ) {
+      if (state.currentCanvas) {
+        state.currentCanvas.render();
+      }
+    }
+  });
+  $(".lineCapRadioButton").bind("change",function(){
+    $("#lineCap").val($(this).val());
+    if (state.currentCanvas) {
+      state.currentCanvas.render();
+    }
+  });
+  $(".colorPickerBox").bind("mousedown",function(){
+    if (!state.readyForSaving) {
+      idParts = $(this).attr('id').split('_');
+      $("#" + idParts[0]).val('#' + idParts[1]);
+      if ( state.currentAction != 'freeDraw' ) {
+        if (state.currentCanvas) {
+          state.currentCanvas.render();
+        }
+      }
+    }
+  });
+  $(".freeDrawBrushPickerBox").bind("mousedown",function(){
+    if (!state.readyForSaving) {
+      idParts = $(this).attr('id').split('_');
+      $("#freeDrawBrushType").val(idParts[1]);
+      $("#freeDrawBrushSize").val(idParts[2]);
+      refreshFreeDrawBrushMenu(idParts[1],idParts[2]);
+    }
+  });
+  $(".rectTypeRadioButton").change(function(){
+    if (!state.readyForSaving) {
+      idParts = $(this).attr('id').split('_');
+      $("#rectType").val(idParts[1]);
+      refreshRectTypeSubsections(idParts[1]);
+    }
+  });
+  $(".rectFillTypeRadioButton").change(function(){
+    if (!state.readyForSaving) {
+      idParts = $(this).attr('id').split('_');
+      $("#rectFillType").val(idParts[1]);
+      refreshRectFillTypeSubsections(idParts[1]);
+      if (state.currentCanvas) {
+        state.currentCanvas.render();
+      }
+    }
+  });
+  $(".circleFillTypeRadioButton").change(function(){
+    if (!state.readyForSaving) {
+      idParts = $(this).attr('id').split('_');
+      $("#circleFillType").val(idParts[1]);
+      refreshCircleFillTypeSubsections(idParts[1]);
+      if (state.currentCanvas) {
+        state.currentCanvas.render();
+      }
+    }
+  });
+  $("#rectGradientSetPoints").click(function(){
+    if (!state.readyForSaving) {
+      state.readyForGradientSetPoints = true;
+      refreshHintText('hintTextSetGradient');
+    }
+  });
+  $("#circleGradientSetPoints").click(function(){
+    if (!state.readyForSaving) {
+      state.readyForGradientSetPoints = true;
+      refreshHintText('hintTextSetGradient');
+    }
+  });
+  $("body").mousedown(function(e){
+    if ( state.readyForGradientSetPoints &&
+         !( state.currentCanvas &&
+            state.currentCanvas.canvasAction == 'gradientSetPoints' ) ) {
+      refreshHintText();
+    }
+    state.readyForGradientSetPoints = false;
+  });
+  $(".circleTypeRadioButton").change(function(){
+    if (!state.readyForSaving) {
+      idParts = $(this).attr('id').split('_');
+      $("#circleType").val(idParts[1]);
+      refreshCircleTypeSubsections(idParts[1]);
+    }
+  });
+  $("#opacity").change(function(){
+    $("#opacityText").html($(this).val() + "%");
+  });
+  $("#flipHorizAction").click(function(){
+    if ( state.currentAction != 'freeDraw' ) {
+      if (state.currentCanvas) {
+        state.currentCanvas.flipHoriz = true;
+        state.currentCanvas.render();
+      }
+    }
+  });
+  $("#flipVertAction").click(function(){
+    if ( state.currentAction != 'freeDraw' ) {
+      if (state.currentCanvas) {
+        state.currentCanvas.flipVert = true;
+        state.currentCanvas.render();
+      }
+    }
+  });
+  $("#rotationAngle").change(function(){
+    if ( state.currentAction != 'freeDraw' ) {
+      if (state.currentCanvas) {
+        state.currentCanvas.rotate = true;
+        state.currentCanvas.render();
+      }
+      $("#rotationAngle").val(0);
+    }
+  });
+  $(".canvasMenuItemBox").live("mousedown",function(){
+    if (!state.readyForSaving) {
+      handleCanvasMenuItemSelect($(this).attr('id'),state,canvases,canvasIDs);
+    }
+  });
+  $(".canvasDelete").live("mousedown",function(){
+    handleCanvasDeleteButtonClick($(this).attr('id'),state,canvases,canvasIDs);
+  });
+  $(".canvasMoveUp").live("mousedown",function(){
+    handleCanvasMoveUpButtonClick($(this).attr('id'),state,canvases,canvasIDs);
+  });
+  $(".canvasMoveDown").live("mousedown",function(){
+    handleCanvasMoveDownButtonClick($(this).attr('id'),state,canvases,canvasIDs);
+  });
+  $("#showGridlines").change(function(){
+    if ($(this).attr("checked")) {
+      $("#canvasGridlines").css("display","block");
+    } else {
+      $("#canvasGridlines").css("display","none");
+    }
+  });
+  $("#canvasImageForSavingButton").click(function(){
+    // If user in the middle of drawing initial shape or moving shape, 
+    // don't allow saving
+    if ( !state.currentCanvas ||
+         !state.currentCanvas.canvasAction ) {
+      saveCanvasAsImagePrepare(state,canvasFrame,canvases);
+    }
+  });
+  $("#canvasImageForSavingDoneButton").click(function(){
+    saveCanvasAsImageDone(state,canvasFrame);
+  });
+  $("#canvasImageForSavingCancelButton").click(function(){
+    saveCanvasAsImageDone(state,canvasFrame);
+  });
+});
+</script>
+
+</head>
+<body>
+
+<table id="canvasTable">
+<tr>
+<td id="pageTitleTextDisplay">DOODLE</td>
+<td id="hintDisplay" colspan="2">
+<!------- HINT TEXT ------->
+<span id="hintTextDrawText" class="hintText">After entering text, click on canvas to place it</span>
+<span id="hintTextDrawLine" class="hintText">Click/drag on canvas to draw line</span>
+<span id="hintTextDrawRect" class="hintText">Click/drag on canvas to draw rectangle</span>
+<span id="hintTextDrawCircle" class="hintText">Click/drag on canvas to draw circle</span>
+<span id="hintTextDrawImage" class="hintText">After entering image URL, click on canvas to place it</span>
+<span id="hintTextMoveShape" class="hintText">Click/drag on canvas to move shape</span>
+<span id="hintTextSetGradient" class="hintText">Click/drag on canvas to set gradient start/end points</span>
+</td>
+<td id="transformActionMenuDisplay">
+<!------- OPACITY ------->
+<span id="opacityActionWrapper" class="actionWrapper">
+<span class="actionParamLabelText">Opacity:</span> 
+<input name="opacity" id="opacity" class="actionParam opacityInputBox" type="range" min="0" max="100" step="5" /><span id="opacityText">100%</span>
+</span> 
+<!------- FLIP HORIZ/VERT ------->
+<button id="flipHorizAction">Flip horiz</button> 
+<button id="flipVertAction">Flip vert</button> 
+<!------- ROTATE ------->
+<span id="rotationAngleActionWrapper" class="actionWrapper">
+<span class="actionParamLabelText">Rotate:</span>
+<input name="rotationAngle" id="rotationAngle" class="actionParam rotationAngleInputBox" type="number" min="-180" max="180" step="1" />
+</span>
+</td>
+<td id="canvasMenuDisplay" rowspan="3">
+<!------- CANVAS THUMBNAILS ------->
+<span class="helpText">Click to edit shape:</span><br />
+<div id="canvasMenu"></div>
+</td>
+</tr>
+<tr>
+<td id="actionMenuDisplay" rowspan="2">
+<!------- FREE DRAW ------->
+<button id="freeDrawAction" class="actionButton">Free draw</button><br />
+<div id="freeDrawActionWrapper" class="actionWrapper" style="display:none;">
+<span class="actionParamLabelText">Brush:</span>
+<table id="freeDrawBrushTable">
+<tr>
+<td id="freeDrawBrushSquareWrapper_0" class="freeDrawBrushWrapper"></td>
+<td id="freeDrawBrushSquareWrapper_1" class="freeDrawBrushWrapper"></td>
+<td id="freeDrawBrushSquareWrapper_2" class="freeDrawBrushWrapper"></td>
+<td id="freeDrawBrushSquareWrapper_3" class="freeDrawBrushWrapper"></td>
+<td id="freeDrawBrushSquareWrapper_4" class="freeDrawBrushWrapper"></td>
+</tr>
+<tr>
+<td id="freeDrawBrushCircleWrapper_0" class="freeDrawBrushWrapper"></td>
+<td id="freeDrawBrushCircleWrapper_1" class="freeDrawBrushWrapper"></td>
+<td id="freeDrawBrushCircleWrapper_2" class="freeDrawBrushWrapper"></td>
+<td id="freeDrawBrushCircleWrapper_3" class="freeDrawBrushWrapper"></td>
+<td id="freeDrawBrushCircleWrapper_4" class="freeDrawBrushWrapper"></td>
+</tr>
+</table>
+<input type="hidden" name="freeDrawBrushType" id="freeDrawBrushType" class="actionParam" />
+<input type="hidden" name="freeDrawBrushSize" id="freeDrawBrushSize" class="actionParam" />
+<span class="actionParamLabelText">Color:</span>
+<div id="freeDrawColorPickerWrapper" class="colorPickerWrapper"></div>
+<input type="text" name="freeDrawColor" id="freeDrawColor" class="actionParam colorInputBox" maxlength="7" />
+</div>
+<!------- TEXT ------->
+<button id="textAction" class="actionButton">Text</button><br />
+<div id="textActionWrapper" class="actionWrapper" style="display:none;">
+<span class="actionParamLabelText">Text:</span>
+<input type="text" name="textText" id="textText" class="actionParam textTextInputBox" maxlength="50" /><br />
+<span class="actionParamLabelText">Font:</span>
+<select name="textFont" id="textFont" class="actionParam textFontInputPulldown"></select><br />
+<span class="actionParamLabelText">Size:</span>
+<input name="textSize" id="textSize" class="actionParam textSizeInputBox" type="number" min="8" max="50" step="1" /><span class="actionParamLabelText"> pt</span><br />
+<span class="actionParamLabelText">Color:</span>
+<div id="textColorPickerWrapper" class="colorPickerWrapper"></div>
+<input type="text" name="textColor" id="textColor" class="actionParam colorInputBox" maxlength="7" />
+</div>
+<!------- LINE ------->
+<button id="lineAction" class="actionButton">Line</button><br />
+<div id="lineActionWrapper" class="actionWrapper" style="display:none;">
+<span class="actionParamLabelText">Line width:</span>
+<input name="lineLineWidth" id="lineLineWidth" class="actionParam lineWidthInputBox" type="number" min="1" max="50" step="1" /><br />
+<table id="lineCapTable">
+<tr>
+<td id="lineCapLabel"><span class="actionParamLabelText">Line cap:</span></td>
+<td>
+<input type="radio" name="lineCapChoice" id="lineCap_butt" class="lineCapRadioButton" value="butt" /> 
+<span class="actionParamLabelTextSmall">Flat</span><br />
+<input type="radio" name="lineCapChoice" id="lineCap_round" class="lineCapRadioButton" value="round" /> 
+<span class="actionParamLabelTextSmall">Round</span><br />
+</td>
+</tr>
+</table>
+<input type="hidden" name="lineCap" id="lineCap" class="actionParam" value="butt" />
+<span class="actionParamLabelText">Line color:</span>
+<div id="lineColorPickerWrapper" class="colorPickerWrapper"></div>
+<input type="text" name="lineColor" id="lineColor" class="actionParam colorInputBox" maxlength="7" /><br />
+<span class="actionParamLabelText">Shadow:</span><br />
+<span class="actionParamLabelText shadowSubsection"> X offset:</span>
+<input name="lineShadowOffsetX" id="lineShadowOffsetX" class="actionParam shadowInputBox" type="number" min="-30" max="30" step="1" /><br />
+<span class="actionParamLabelText shadowSubsection"> Y offset:</span>
+<input name="lineShadowOffsetY" id="lineShadowOffsetY" class="actionParam shadowInputBox" type="number" min="-30" max="30" step="1" /><br />
+<span class="actionParamLabelText shadowSubsection"> Blur:</span>
+<input name="lineShadowBlur" id="lineShadowBlur" class="actionParam shadowInputBox" type="number" min="0" max="25" step="1" /><br />
+</div>
+<!------- RECTANGLE ------->
+<button id="rectAction" class="actionButton">Rectangle</button><br />
+<div id="rectActionWrapper" class="actionWrapper" style="display:none;">
+<table id="rectTypeTable">
+<tr>
+<td id="rectTypeLabel"><span class="actionParamLabelText">Type:</span></td>
+<td>
+<input type="radio" name="rectTypeChoice" id="rectType_hollow" class="actionParam rectTypeRadioButton" value="hollow" checked="checked" /> 
+<span class="actionParamLabelTextSmall">Hollow</span><br />
+<input type="radio" name="rectTypeChoice" id="rectType_solid" class="actionParam rectTypeRadioButton" value="solid" /> 
+<span class="actionParamLabelTextSmall">Solid</span><br />
+<input type="radio" name="rectTypeChoice" id="rectType_solidWithBorder" class="actionParam rectTypeRadioButton" value="solidWithBorder" /> 
+<span class="actionParamLabelTextSmall">Solid w/ border</span><br />
+</td>
+</tr>
+</table>
+<input type="hidden" name="rectType" id="rectType" class="actionParam" value="hollow" />
+<div id="rectLineWidthWrapper">
+<span class="actionParamLabelText">Line width:</span>
+<input name="rectLineWidth" id="rectLineWidth" class="actionParam lineWidthInputBox" type="number" min="1" max="50" step="1" /><br />
+</div>
+<div id="rectLineColorWrapper">
+<span class="actionParamLabelText">Line color:</span>
+<div id="rectLineColorPickerWrapper" class="colorPickerWrapper"></div>
+<input type="text" name="rectLineColor" id="rectLineColor" class="actionParam colorInputBox" maxlength="7" /><br />
+</div>
+<div id="rectFillWrapper">
+<table id="rectFillTypeTable">
+<tr>
+<td id="rectFillTypeLabel"><span class="actionParamLabelText">Fill type:</span></td>
+<td>
+<input type="radio" name="rectFillTypeChoice" id="rectFillType_color" class="actionParam rectFillTypeRadioButton" value="color" checked="checked" /> 
+<span class="actionParamLabelTextSmall">Color</span><br />
+<input type="radio" name="rectFillTypeChoice" id="rectFillType_gradient" class="actionParam rectFillTypeRadioButton" value="gradient" /> 
+<span class="actionParamLabelTextSmall">Gradient</span><br />
+</td>
+</tr>
+</table>
+<input type="hidden" name="rectFillType" id="rectFillType" class="actionParam" value="color" />
+<div id="rectFillColorWrapper">
+<span class="actionParamLabelText">Fill color:</span>
+<div id="rectFillColorPickerWrapper" class="colorPickerWrapper"></div>
+<input type="text" name="rectFillColor" id="rectFillColor" class="actionParam colorInputBox" maxlength="7" /><br />
+</div>
+<div id="rectFillGradientWrapper">
+<div id="rectGradientSetPointsWrapper">
+<a href="#" id="rectGradientSetPoints" class="actionParamLabelText">Set gradient start/end points (drag mouse)</a>
+</div>
+<span class="actionParamLabelText">Gradient start color:</span>
+<div id="rectGradientStartColorPickerWrapper" class="colorPickerWrapper"></div>
+<input type="text" name="rectGradientStartColor" id="rectGradientStartColor" class="actionParam colorInputBox" maxlength="7" /><br />
+<span class="actionParamLabelText">Gradient stop color:</span>
+<div id="rectGradientStopColorPickerWrapper" class="colorPickerWrapper"></div>
+<input type="text" name="rectGradientStopColor" id="rectGradientStopColor" class="actionParam colorInputBox" maxlength="7" /><br />
+</div>
+</div>
+<span class="actionParamLabelText">Shadow:</span><br />
+<span class="actionParamLabelText shadowSubsection">X offset:</span>
+<input name="rectShadowOffsetX" id="rectShadowOffsetX" class="actionParam shadowInputBox" type="number" min="-30" max="30" step="1" /><br />
+<span class="actionParamLabelText shadowSubsection">Y offset:</span>
+<input name="rectShadowOffsetY" id="rectShadowOffsetY" class="actionParam shadowInputBox" type="number" min="-30" max="30" step="1" /><br />
+<span class="actionParamLabelText shadowSubsection">Blur:</span>
+<input name="rectShadowBlur" id="rectShadowBlur" class="actionParam shadowInputBox" type="number" min="0" max="25" step="1" /><br />
+</div>
+<!------- CIRCLE ------->
+<button id="circleAction" class="actionButton">Circle</button><br />
+<div id="circleActionWrapper" class="actionWrapper" style="display:none;">
+<table id="circleTypeTable">
+<tr>
+<td id="circleTypeLabel"><span class="actionParamLabelText">Type:</span></td>
+<td>
+<input type="radio" name="circleTypeChoice" id="circleType_hollow" class="actionParam circleTypeRadioButton" value="hollow" checked="checked" /> 
+<span class="actionParamLabelTextSmall">Hollow</span><br />
+<input type="radio" name="circleTypeChoice" id="circleType_solid" class="actionParam circleTypeRadioButton" value="solid" /> 
+<span class="actionParamLabelTextSmall">Solid</span><br />
+<input type="radio" name="circleTypeChoice" id="circleType_solidWithBorder" class="actionParam circleTypeRadioButton" value="solidWithBorder" /> 
+<span class="actionParamLabelTextSmall">Solid w/ border</span><br />
+</td>
+</tr>
+</table>
+<input type="hidden" name="circleType" id="circleType" class="actionParam" value="hollow" />
+<div id="circleLineWidthWrapper">
+<span class="actionParamLabelText">Line width:</span>
+<input name="circleLineWidth" id="circleLineWidth" class="actionParam lineWidthInputBox" type="number" min="1" max="50" step="1" /><br />
+</div>
+<div id="circleLineColorWrapper">
+<span class="actionParamLabelText">Line color:</span>
+<div id="circleLineColorPickerWrapper" class="colorPickerWrapper"></div>
+<input type="text" name="circleLineColor" id="circleLineColor" class="actionParam colorInputBox" maxlength="7" /><br />
+</div>
+<div id="circleFillWrapper">
+<table id="circleFillTypeTable">
+<tr>
+<td id="circleFillTypeLabel"><span class="actionParamLabelText">Fill type:</span></td>
+<td>
+<input type="radio" name="circleFillTypeChoice" id="circleFillType_color" class="actionParam circleFillTypeRadioButton" value="color" checked="checked" /> 
+<span class="actionParamLabelTextSmall">Color</span><br />
+<input type="radio" name="circleFillTypeChoice" id="circleFillType_gradient" class="actionParam circleFillTypeRadioButton" value="gradient" /> 
+<span class="actionParamLabelTextSmall">Gradient</span><br />
+</td>
+</tr>
+</table>
+<input type="hidden" name="circleFillType" id="circleFillType" class="actionParam" value="color" />
+<div id="circleFillColorWrapper">
+<span class="actionParamLabelText">Fill color:</span>
+<div id="circleFillColorPickerWrapper" class="colorPickerWrapper"></div>
+<input type="text" name="circleFillColor" id="circleFillColor" class="actionParam colorInputBox" maxlength="7" /><br />
+</div>
+<div id="circleFillGradientWrapper">
+<div id="circleGradientSetPointsWrapper">
+<a href="#" id="circleGradientSetPoints" class="actionParamLabelText">Set gradient start/end points (drag mouse)</a>
+</div>
+<span class="actionParamLabelText">Gradient start color:</span>
+<div id="circleGradientStartColorPickerWrapper" class="colorPickerWrapper"></div>
+<input type="text" name="circleGradientStartColor" id="circleGradientStartColor" class="actionParam colorInputBox" maxlength="7" /><br />
+<span class="actionParamLabelText">Gradient stop color:</span>
+<div id="circleGradientStopColorPickerWrapper" class="colorPickerWrapper"></div>
+<input type="text" name="circleGradientStopColor" id="circleGradientStopColor" class="actionParam colorInputBox" maxlength="7" /><br />
+</div>
+</div>
+<span class="actionParamLabelText">Shadow:</span><br />
+<span class="actionParamLabelText shadowSubsection">X offset:</span>
+<input name="circleShadowOffsetX" id="circleShadowOffsetX" class="actionParam shadowInputBox" type="number" min="-30" max="30" step="1" /><br />
+<span class="actionParamLabelText shadowSubsection">Y offset:</span>
+<input name="circleShadowOffsetY" id="circleShadowOffsetY" class="actionParam shadowInputBox" type="number" min="-30" max="30" step="1" /><br />
+<span class="actionParamLabelText shadowSubsection">Blur:</span>
+<input name="circleShadowBlur" id="circleShadowBlur" class="actionParam shadowInputBox" type="number" min="0" max="25" step="1" /><br />
+</div>
+<!------- IMAGE ------->
+<button id="imageAction" class="actionButton">Image</button><br />
+<div id="imageActionWrapper" class="actionWrapper" style="display:none;">
+<span class="actionParamLabelText">URL:</span>
+<input type="text" name="imageURL" id="imageURL" class="actionParam imageURLInputBox" maxlength="200" /><br />
+</div>
+</td>
+<td id="canvasDisplay" colspan="3">
+<!------- DRAWING CANVAS ------->
+<div id="canvasWrapper">
+<canvas id="canvasFrame">
+Sorry, your browser does not support HTML5 Canvas, which is required in order for this tool to work.
+</canvas>
+<img id="canvasImageForSaving" style="display:none;" />
+</div>
+</td>
+</tr>
+<tr>
+<td id="mouseCoordsDisplay">
+<div id="mouseCoords">0,0</div>
+</td>
+<td id="showGridlinesCheckboxDisplay">
+<input type="checkbox" name="showGridlines" id="showGridlines" /> 
+<span class="showGridlinesText">Show gridlines</span>
+</td>
+<td id="canvasImageForSavingDisplay">
+<div id="canvasImageForSavingInstructionText" style="display:none;">
+Right click on drawing to save it as an<br />
+image, then click 
+<button id="canvasImageForSavingDoneButton">Done</button> 
+or 
+<button id="canvasImageForSavingCancelButton">Cancel</button>
+</div>
+<button id="canvasImageForSavingButton" disabled="disabled">Save drawing as image</button>
+</td>
+</tr>
+</table>
+
+<br />
+<span id="footerText">
+Copyright <span id="currentYear">2011</span>, permission granted to modify and redistribute under <a href="http://www.gnu.org/licenses/gpl.html" title="General Public License v2.0">General Public License</a> v2.0 or later.
+<br />
+
+</body>
+</html>
